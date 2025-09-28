@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+/* 1. Root variables */
+:root {
+  /* Fonts */
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Inter", sans-serif;
+
+  /* Font sizes */
+  --text-xs: 0.75rem; /* nav items, tag labels */
+  --text-sm: 0.875rem; /* small text, buttons */
+  --text-base: 1rem; /* default body */
+  --text-lg: 1.125rem; /* subtitles */
+  --text-xl: 1.25rem; /* section headings */
+  --text-2xl: 1.5rem; /* role/title emphasis */
+  --text-3xl: 1.875rem; /* main name/title */
+
+  /* Font weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Colors */
+  --color-primary: #1a73e8;
+  --color-secondary: #ff6d00;
+  --gradient-bg: linear-gradient(135deg, #1a73e8, #ff6d00);
+  --color-text: #fff;
+}
+
+/* 2. Resets */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 3. Base styles */
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--gradient-bg);
+}
+
+/* Typography */
+h1 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  font-family: var(--font-heading);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+}
+
+h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+}
+
+p {
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
+}
+
+small,
+.tag,
+.nav-item {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+}
+
+button,
+.btn {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+}
+
+/* 👇 This is the centering stage */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* ensures full viewport height */
+}
+
+/* 4. Outer container */
+.outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 70%;
+  max-width: 1200px;
+  height: 70vh;
+  min-height: 400px;
+
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* 5. Inner container */
+.inner-container {
+  width: 95%;
+  height: 90%;
+  min-height: 200px;
+
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.27);
+
+  display: grid;
+  grid-template-columns: 3fr 6fr;
+  padding: 1%;
+}

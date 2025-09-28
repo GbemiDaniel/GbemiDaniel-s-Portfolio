@@ -1,0 +1,59 @@
+/* Timeline.module.css */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 900px;
+}
+
+.timelineItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.date {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.connector {
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  margin: 0 1rem;
+  position: relative;
+}
+
+.content {
+  flex: 2;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Alternating layout */
+.right {
+  flex-direction: row-reverse;
+}
+
+.left {
+  flex-direction: row;
+}

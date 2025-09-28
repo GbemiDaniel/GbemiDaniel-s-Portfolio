@@ -1,0 +1,154 @@
+/* Wrapper for whole carousel */
+.carouselWrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Ensure Swiper keeps proper spacing */
+.swiper {
+  padding-bottom: 40px; /* for dots */
+}
+
+/* Each card container */
+.projectCardContainer {
+  width: 280px; /* slightly smaller than before */
+  max-width: 280px;
+  height: 260px; /* reduced height */
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* Card itself */
+.projectCard {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* Image */
+.projectImage {
+  width: 100%;
+  height: 140px; /* reduced from 180 */
+  object-fit: cover;
+}
+
+/* Content area */
+.projectContent {
+  flex: 1;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.projectTitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.projectDesc {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  line-height: 1.3;
+}
+
+/* Tech stack chips */
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.techChip {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
+
+/* Links */
+.links {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: color 0.2s ease;
+}
+
+.links a:hover {
+  color: var(--color-secondary);
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  padding: 0.4rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+/* Dots */
+.dotsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #bbb;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dot:hover {
+  transform: scale(1.2);
+}
+
+.activeDot {
+  background-color: #333;
+}
