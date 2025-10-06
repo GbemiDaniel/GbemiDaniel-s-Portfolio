@@ -1,10 +1,15 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import styles from "./Projects.module.css";
+import ProjectCard from "./ProjectCard";
+
+// Import shadcn/ui carousel primitives
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel"; // Adjust path as needed
 
 const projects = [
   {
@@ -35,50 +40,20 @@ const projects = [
 
 function Projects() {
   return (
-    <div className={styles.carouselWrapper}>
-      <Swiper
-        modules={[Navigation, Pagination]}
-        spaceBetween={24} // gap between cards
-        slidesPerView={1} // 1 card on mobile
-        navigation
-        pagination={{ clickable: true }}
-        breakpoints={{
-          768: { slidesPerView: 2 }, // 2 cards on tablets
-          1024: { slidesPerView: 1 }, // 3 cards on desktops
-        }}
-      >
+    <Carousel>
+      <CarouselContent className="-ml-4">
         {projects.map((project, idx) => (
-          <SwiperSlide key={idx}>
-            <div className={styles.projectCard}>
-              <img
-                src={project.image}
-                alt={project.title}
-                className={styles.projectImage}
-              />
-              <div className={styles.projectContent}>
-                <h3 className={styles.projectTitle}>{project.title}</h3>
-                <p className={styles.projectDesc}>{project.description}</p>
-                <div className={styles.techStack}>
-                  {project.tech.map((tech, tIdx) => (
-                    <span key={tIdx} className={styles.techChip}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className={styles.links}>
-                  <a href={project.live} target="_blank" rel="noreferrer">
-                    Live Demo
-                  </a>
-                  <a href={project.code} target="_blank" rel="noreferrer">
-                    Code
-                  </a>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
+          <CarouselItem
+            key={idx}
+            className="basis-1/1 md:basis-1/1 lg:basis-1/1 pl-4"
+          >
+            <ProjectCard project={project} variant="full" />
+          </CarouselItem>
         ))}
-      </Swiper>
-    </div>
+      </CarouselContent>
+      <CarouselPrevious className={styles.arrow} />
+      <CarouselNext className={styles.arrow} />
+    </Carousel>
   );
 }
 

@@ -1,10 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import styles from "./RightContent.module.css";
 
 // Import views
 import About from "./About";
 import Projects from "./Projects";
 import Timeline from "./Timeline";
+import Chip from "./Chip";
+import ProjectsPreview from "./ProjectsPreview";
+import SkillChip from "./SkillChip";
 
 const variants = {
   hidden: { opacity: 0, x: 40 },
@@ -27,28 +31,17 @@ function RightContent({ activeSection }) {
         >
           {activeSection === "home" && (
             <>
-              <h3 className={styles.sectionTitle}>Skills</h3>
+              <h3 className="sectionTitle">Skills</h3>
               <div className={styles.skills}>
-                <span className={styles.chip}>React</span>
-                <span className={styles.chip}>JavaScript</span>
-                <span className={styles.chip}>CSS</span>
-                <span className={styles.chip}>TypeScript</span>
+                <SkillChip />
               </div>
-
-              <h3 className={styles.sectionTitle}>Projects</h3>
+              <h3 className="sectionTitle">Projects</h3>
               <div className={styles.projects}>
-                <div className={styles.projectCard}>Project 1</div>
-                <div className={styles.projectCard}>Project 2</div>
+                <ProjectsPreview />
               </div>
-
-              <h3 className={styles.sectionTitle}>Socials</h3>
+              <h3 className="sectionTitle">Socials</h3>
               <div className={styles.socials}>
-                <a href="#" className={styles.socialLink}>
-                  Discord
-                </a>
-                <a href="#" className={styles.socialLink}>
-                  WhatsApp
-                </a>
+                <Chip />
               </div>
             </>
           )}
