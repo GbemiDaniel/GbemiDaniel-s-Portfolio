@@ -34,7 +34,7 @@ const ChipItem = ({ name, icon: Icon, color }) => {
       className={styles.chip}
       style={{ backgroundColor: color + "22", borderColor: color }}
     >
-      <Icon alt={name} className={styles.icon} color={color} size={22} />
+      <Icon alt={name} className={styles.icon} color={color} />
       {/* <span className={styles.text}>{name}</span> */}
     </div>
   );

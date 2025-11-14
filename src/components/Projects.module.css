@@ -1,28 +1,45 @@
-/* Wrapper for whole carousel */
+/* =============================
+   PROJECTS MODULE (Clean Merge)
+   ============================= */
+
+/* ========== Layout / Wrapper ========== */
 .carouselWrapper {
   width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: visible !important; /* ✅ Force visible */
+  padding: 1rem 0;
 }
 
-/* Ensure Swiper keeps proper spacing */
+/* ✅ Make sure Shadcn carousel container doesn't hide overflow */
+.carouselWrapper > * {
+  overflow: visible !important;
+}
+
+.carouselWrapper [data-carousel] {
+  overflow: visible !important;
+}
+
+/* Ensures proper padding for dots or arrows */
 .swiper {
-  padding-bottom: 40px; /* for dots */
+  padding-bottom: 40px;
 }
 
-/* Each card container */
+/* ========== Card Container ========== */
 .projectCardContainer {
-  width: 280px; /* slightly smaller than before */
-  max-width: 280px;
-  height: 260px; /* reduced height */
+  width: clamp(240px, 26vw, 300px);
+  height: clamp(230px, 28vh, 280px);
   display: flex;
   flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Card itself */
+/* ========== Project Card ========== */
 .projectCard {
   flex: 1;
   background: rgba(255, 255, 255, 0.08);
@@ -32,7 +49,9 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  backdrop-filter: blur(6px) saturate(160%);
+  -webkit-backdrop-filter: blur(6px) saturate(160%);
 }
 
 .projectCard:hover {
@@ -40,34 +59,41 @@
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
 }
 
-/* Image */
+/* ========== Image ========== */
 .projectImage {
   width: 100%;
-  height: 140px; /* reduced from 180 */
+  height: clamp(120px, 18vh, 160px);
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* Content area */
+.projectCard:hover .projectImage {
+  transform: scale(1.05);
+}
+
+/* ========== Content ========== */
 .projectContent {
   flex: 1;
-  padding: 0.8rem;
+  padding: clamp(0.6rem, 1.2vw, 1rem);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 .projectTitle {
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .projectDesc {
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 1.4vw, 0.9rem);
   opacity: 0.85;
-  line-height: 1.3;
+  line-height: 1.4;
+  color: var(--text-secondary);
 }
 
-/* Tech stack chips */
+/* ========== Tech Stack Chips ========== */
 .techStack {
   display: flex;
   flex-wrap: wrap;
@@ -78,10 +104,11 @@
   background: rgba(255, 255, 255, 0.12);
   padding: 3px 8px;
   border-radius: 10px;
-  font-size: 0.7rem;
+  font-size: clamp(0.65rem, 1.2vw, 0.75rem);
+  color: var(--text-secondary);
 }
 
-/* Links */
+/* ========== Links ========== */
 .links {
   margin-top: auto;
   display: flex;
@@ -93,7 +120,7 @@
   text-decoration: none;
   color: var(--color-primary);
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
   transition: color 0.2s ease;
 }
 
@@ -101,7 +128,7 @@
   color: var(--color-secondary);
 }
 
-/* Arrows */
+/* ========== Carousel Arrows ========== */
 .arrow {
   position: absolute;
   top: 50%;
@@ -109,14 +136,16 @@
   background: rgba(255, 255, 255, 0.15);
   border: none;
   border-radius: 50%;
-  padding: 0.4rem;
+  padding: 0.45rem;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.25s ease;
   z-index: 10;
+  backdrop-filter: blur(4px);
 }
 
 .arrow:hover {
   background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .arrow.left {
@@ -127,7 +156,7 @@
   right: 10px;
 }
 
-/* Dots */
+/* ========== Dots ========== */
 .dotsWrapper {
   display: flex;
   justify-content: center;
@@ -152,61 +181,120 @@
 .activeDot {
   background-color: #333;
 }
-/* Smaller preview card */ /* --- Preview card (replaced for smaller footprint) --- */
+
+/* ========== Preview Card - UPDATED ========== */
 .previewCard {
-  width: 90%;
-  height: 19vh; /* reduced height */
-  padding: 8px;
+  width: 240px !important; /* ✅ Force fixed width */
+  height: 200px !important; /* ✅ Force fixed height */
+  margin: 0 auto !important;
+  padding: 0.65rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* shrink preview image for this variant */
 .previewCard .projectImage {
-  height: 80px;
+  width: 100%;
+  height: 90px !important; /* ✅ Force fixed height */
   object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  margin-bottom: 0.4rem;
 }
 
-/* hide full details for preview */
+.previewCard .projectContent {
+  padding: 0;
+  gap: 0.3rem;
+  flex: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
 .previewCard .projectDesc,
 .previewCard .links {
   display: none;
 }
 
-/* slightly smaller title */
 .previewCard .projectTitle {
-  font-size: 0.95rem;
-  margin: 6px 0 4px;
+  font-size: 0.95rem !important;
+  margin: 0;
   text-align: center;
+  line-height: 1.2;
+  font-weight: 600;
 }
 
-/* Preview navigation buttons (local to ProjectsPreview) */
-.previewNav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.12);
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
+.previewCard .techStack {
+  margin-top: 0.4rem;
   justify-content: center;
-  z-index: 20;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+  gap: 0.3rem;
+}
+
+.previewCard .techChip {
+  font-size: 0.65rem !important;
+  padding: 2px 6px;
+}
+
+/* ========== Preview Nav Buttons - UPDATED ========== */
+.previewNav {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  z-index: 9999 !important;
+  transition: all 0.3s ease !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  animation: arrowPulse 2.8s ease-in-out infinite !important; /* ✅ Pulsing effect back */
 }
 
 .previewNav:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-50%) scale(1.05);
+  background: rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-50%) scale(1.08) !important;
+  animation: none !important; /* Stop pulse on hover */
+}
+
+/* ✅ Make sure the SVG icon is visible */
+.previewNav svg {
+  width: 16px !important;
+  height: 16px !important;
+  color: white !important;
+  fill: white !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* ✅ Position for Next button (right side) */
+.previewNav[data-direction="next"],
+.previewNav.next {
+  right: 10px !important;
+}
+
+/* ✅ Position for Prev button (left side) */
+.previewNav[data-direction="prev"],
+.previewNav.prev {
+  left: 10px !important;
 }
 
 .previewPrev {
@@ -215,4 +303,218 @@
 
 .previewNext {
   right: 6px;
+}
+
+/* ========== Responsiveness ========== */
+@media (min-width: 1200px) {
+  .projectCardContainer {
+    width: clamp(300px, 24vw, 340px);
+    height: clamp(260px, 30vh, 320px);
+  }
+
+  .projectImage {
+    height: clamp(150px, 20vh, 180px);
+  }
+
+  .projectCard {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectCardContainer {
+    width: 85%;
+    height: auto;
+  }
+
+  .arrow {
+    padding: 0.35rem;
+  }
+  .previewNav {
+    top: 60%;
+  }
+}
+
+@media (max-width: 640px) {
+  .carouselWrapper {
+    max-width: 290px;
+    padding: 1rem 0;
+  }
+
+  .previewCard {
+    width: 220px !important;
+    height: 195px !important;
+  }
+
+  .previewCard .projectImage {
+    height: 85px !important;
+  }
+
+  .previewCard .projectTitle {
+    font-size: 0.9rem !important;
+  }
+
+  .previewNav {
+    right: 8px !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .previewNav svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectTitle {
+    font-size: 0.9rem;
+  }
+
+  .projectDesc {
+    font-size: 0.75rem;
+  }
+
+  .arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .carouselWrapper {
+    max-width: 270px;
+  }
+
+  .previewCard {
+    width: 210px !important;
+    height: 190px !important;
+    padding: 0.6rem;
+  }
+
+  .previewCard .projectImage {
+    height: 80px !important;
+    margin-bottom: 0.35rem;
+  }
+
+  .previewCard .projectTitle {
+    font-size: 0.88rem !important;
+  }
+
+  .previewCard .techChip {
+    font-size: 0.62rem !important;
+  }
+
+  .previewNav {
+    right: 6px !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .previewNav svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .carouselWrapper {
+    max-width: 250px;
+  }
+
+  .previewCard {
+    width: 195px !important;
+    height: 185px !important;
+    padding: 0.55rem;
+  }
+
+  .previewCard .projectImage {
+    height: 75px !important;
+  }
+
+  .previewCard .projectTitle {
+    font-size: 0.85rem !important;
+  }
+
+  .previewCard .techChip {
+    font-size: 0.6rem !important;
+    padding: 2px 5px;
+  }
+
+  .previewNav {
+    right: 5px !important;
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .previewNav svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* ========== Specific device optimizations ========== */
+@media (min-width: 375px) and (max-width: 414px) {
+  /* iPhone XR, iPhone 11, iPhone SE */
+  .carouselWrapper {
+    max-width: 280px;
+  }
+
+  .previewCard {
+    width: 215px !important;
+    height: 192px !important;
+  }
+
+  .previewCard .projectImage {
+    height: 82px !important;
+  }
+
+  .previewNav {
+    right: 7px !important;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 430px) {
+  /* iPhone 14 Pro Max */
+  .carouselWrapper {
+    max-width: 290px;
+  }
+
+  .previewCard {
+    width: 225px !important;
+    height: 195px !important;
+  }
+
+  .previewCard .projectImage {
+    height: 85px !important;
+  }
+
+  .previewNav {
+    right: 8px !important;
+  }
+}
+
+/* ========== Larger tablets and small desktops ========== */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .previewNav {
+    right: -0.8rem;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ========== Arrow Pulse Animation ========== */
+@keyframes arrowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.05);
+  }
+}
+
+/* Apply the pulse effect - can be toggled on/off */
+.previewNav {
+  animation: arrowPulse 2.8s ease-in-out infinite;
 }

@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import styles from "./RightContent.module.css";
 
 // Import views
@@ -9,6 +8,7 @@ import Timeline from "./Timeline";
 import Chip from "./Chip";
 import ProjectsPreview from "./ProjectsPreview";
 import SkillChip from "./SkillChip";
+import { useEffect, useRef } from "react";
 
 const variants = {
   hidden: { opacity: 0, x: 40 },
@@ -17,6 +17,17 @@ const variants = {
 };
 
 function RightContent({ activeSection }) {
+  const isScrollable =
+    activeSection === "timeline" || activeSection === "about";
+
+  // useRef and useEfffect hook used below returns me to the start of each section on every rerender that involves the change in activesection
+  // i had to add the "isScrollable" condition becuase not all the sections should be scrollable
+  const sectionRef = useRef(null);
+  useEffect(() => {
+    if (isScrollable && sectionRef.current) {
+      sectionRef.current.scrollTop = 0;
+    }
+  }, [activeSection]);
   return (
     <div className={styles.rightCol}>
       <AnimatePresence mode="wait">
@@ -27,20 +38,29 @@ function RightContent({ activeSection }) {
           animate="enter"
           exit="exit"
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className={styles.sectionWrapper} // ✅ Add spacing wrapper
+          className={`${styles.sectionWrapper} ${
+            activeSection === "projects" ? styles.centeredSection : ""
+          } ${isScrollable ? styles.scrollableSection : ""}`} // ✅ Add spacing wrapper and centered styles conditionally
+          ref={isScrollable ? sectionRef : null}
         >
           {activeSection === "home" && (
             <>
-              <h3 className="sectionTitle">Skills</h3>
-              <div className={styles.skills}>
+              <div className="sectionTitle">
+                <div className={styles.titleBlock}>
+                  <h3>Skills</h3>
+                </div>
                 <SkillChip />
               </div>
-              <h3 className="sectionTitle">Projects</h3>
-              <div className={styles.projects}>
-                <ProjectsPreview />
+              <div className={styles.previewProjectsTitle}>
+                <h3 className={`${styles.titleBlock} ${"sectionTitle"}`}>
+                  Projects
+                </h3>
+                <div className={styles.projects}>
+                  <ProjectsPreview />
+                </div>
               </div>
-              <h3 className="sectionTitle">Socials</h3>
-              <div className={styles.socials}>
+              <div className="sectionTitle">
+                <h3>Socials</h3>
                 <Chip />
               </div>
             </>

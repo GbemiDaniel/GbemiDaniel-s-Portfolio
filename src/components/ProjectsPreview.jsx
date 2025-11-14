@@ -4,6 +4,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import styles from "./Projects.module.css";
 import ProjectCard from "./ProjectCard";
@@ -37,21 +38,27 @@ const projects = [
 
 function ProjectsPreview() {
   return (
-    <div className="relative w-full">
-      <Carousel opts={{ align: "start", loop: true }}>
-        <CarouselContent className="-ml-10">
+    <div className={styles.carouselWrapper} style={{ overflow: "visible" }}>
+      <Carousel
+        opts={{
+          loop: true,
+        }}
+        className="w-full"
+        style={{ overflow: "visible" }}
+      >
+        <CarouselContent style={{ overflow: "visible" }}>
           {projects.map((project, idx) => (
-            <CarouselItem
-              key={idx}
-              className="basis-full sm:basis-1/2 lg:basis-2/3 pl-2"
-            >
+            <CarouselItem key={idx} style={{ overflow: "visible" }}>
               <ProjectCard project={project} variant="preview" />
             </CarouselItem>
           ))}
         </CarouselContent>
 
-        {/* Single button on far right */}
-        <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 glass-btn" />
+        {/* Next button */}
+        <CarouselNext
+          className={`${styles.previewNav} next`}
+          data-direction="next"
+        />
       </Carousel>
     </div>
   );

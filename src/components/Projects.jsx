@@ -9,7 +9,7 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-} from "@/components/ui/carousel"; // Adjust path as needed
+} from "@/components/ui/carousel";
 
 const projects = [
   {
@@ -18,7 +18,7 @@ const projects = [
     tech: ["React", "CSS", "Framer Motion"],
     live: "#",
     code: "#",
-    image: "https://via.placeholder.com/350x200",
+    image: "Screenshot(214).png",
   },
   {
     title: "E-commerce App",
@@ -26,7 +26,7 @@ const projects = [
     tech: ["MongoDB", "Express", "React", "Node.js"],
     live: "#",
     code: "#",
-    image: "https://via.placeholder.com/350x200",
+    image: "Portfoliobackground.jpg",
   },
   {
     title: "Weather Dashboard",
@@ -40,20 +40,19 @@ const projects = [
 
 function Projects() {
   return (
-    <Carousel>
-      <CarouselContent className="-ml-4">
-        {projects.map((project, idx) => (
-          <CarouselItem
-            key={idx}
-            className="basis-1/1 md:basis-1/1 lg:basis-1/1 pl-4"
-          >
-            <ProjectCard project={project} variant="full" />
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious className={styles.arrow} />
-      <CarouselNext className={styles.arrow} />
-    </Carousel>
+    <div style={{ maxWidth: "460px", margin: "0 auto" }}>
+      <Carousel>
+        <CarouselContent className="-ml-4">
+          {projects.map((project, idx) => (
+            <CarouselItem key={idx} className="basis-full pl-4">
+              <ProjectCard project={project} variant="full" />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className={styles.arrow} />
+        <CarouselNext className={styles.arrow} />
+      </Carousel>
+    </div>
   );
 }
 
