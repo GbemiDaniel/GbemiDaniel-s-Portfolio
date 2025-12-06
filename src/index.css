@@ -144,6 +144,8 @@ button,
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   /* margin-top: clamp(4rem, 6vh, 8rem); */
+  position: relative;
+  overflow: visible;
 }
 
 .inner-container {
@@ -173,6 +175,15 @@ button,
     width: 90%;
     /* margin-top: clamp(9rem, 11vh, 13rem); */
     height: auto;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .inner-container {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.27);
   }
 }
 

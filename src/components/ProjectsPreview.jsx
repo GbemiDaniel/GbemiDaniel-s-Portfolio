@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -37,12 +37,28 @@ const projects = [
 ];
 
 function ProjectsPreview() {
+  const [api, setApi] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setSelectedIndex(api.selectedScrollSnap());
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    onSelect();
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
+
   return (
     <div className={styles.carouselWrapper} style={{ overflow: "visible" }}>
       <Carousel
         opts={{
           loop: true,
         }}
+        setApi={setApi}
         className="w-full"
         style={{ overflow: "visible" }}
       >
@@ -60,6 +76,22 @@ function ProjectsPreview() {
           data-direction="next"
         />
       </Carousel>
+      <div className={styles.pagination}>
+        <div className={styles.dotsWrapper}>
+          {projects.map((_, idx) => (
+            <button
+              key={idx}
+              className={`${styles.dot} ${
+                selectedIndex === idx ? styles.activeDot : ""
+              }`}
+              onClick={() => api?.scrollTo(idx)}
+              aria-label={`Go to preview project ${idx + 1}`}
+              aria-current={selectedIndex === idx}
+              type="button"
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

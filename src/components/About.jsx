@@ -19,32 +19,32 @@ function About() {
         seasoned devs or understanding how non-technical folks envision their
         digital dreams.
         <button onClick={() => setIsExpanded(!isExpanded)}>
-          {isExpanded ? "← Show Less" : "Read More →"}
+          {isExpanded ? "Show Less" : "Read More"}
         </button>
       </p>
       {isExpanded && (
         <p className={`${styles.expandedContent}`}>
           Being a perpetual student means I'm always listening, always growing,
-          and always finding better ways to build what you imagine
+          and always finding better ways to build what you imagine.
         </p>
       )}
 
       <h3 className={"sectionTitle"}>What I Do</h3>
       <ul className={styles.list}>
         <li>
-          🚀 Landing pages, web apps, UI implementations, and original ideas
-          that push boundaries
+          Landing pages, web apps, UI implementations, and original ideas that
+          push boundaries
         </li>
         <li>
-          💻 Developer first, with design sense to bridge aesthetics and
+          Developer first, with design sense to bridge aesthetics and
           functionality
         </li>
         <li>
-          ✨ Drawn to visually striking projects, but every build gets my full
+          Drawn to visually striking projects, but every build gets my full
           commitment
         </li>
         <li>
-          🤝 You're not just a client—you're a collaborator. Your input shapes
+          You're not just a client—you're a collaborator. Your input shapes
           every decision
         </li>
       </ul>

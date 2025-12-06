@@ -27,7 +27,7 @@ function RightContent({ activeSection }) {
     if (isScrollable && sectionRef.current) {
       sectionRef.current.scrollTop = 0;
     }
-  }, [activeSection]);
+  }, [activeSection, isScrollable]);
   return (
     <div className={styles.rightCol}>
       <AnimatePresence mode="wait">

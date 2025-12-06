@@ -1,35 +1,22 @@
 import React from "react";
 import styles from "./SkillChip.module.css";
+import {
+  SiJavascript,
+  SiReact,
+  SiHtml5,
+  SiCss3,
+  SiGit,
+} from "react-icons/si";
 
 const skills = [
-  {
-    name: "JS",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-    color: "#f7df1e",
-  },
-  {
-    name: "React",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-    color: "#61dafb",
-  },
-  {
-    name: "HTML5",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain.svg",
-    color: "#F16529",
-  },
-  {
-    name: "CSS3",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
-    color: "#33A9DC",
-  },
-  {
-    name: "Git",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
-    color: "#F34F29",
-  },
+  { name: "JS", icon: SiJavascript, color: "#f7df1e" },
+  { name: "React", icon: SiReact, color: "#61dafb" },
+  { name: "HTML5", icon: SiHtml5, color: "#F16529" },
+  { name: "CSS3", icon: SiCss3, color: "#33A9DC" },
+  { name: "Git", icon: SiGit, color: "#F34F29" },
 ];
 
-const SkillChipItem = ({ name, icon, color }) => (
+const SkillChipItem = ({ name, icon: Icon, color }) => (
   <div
     className={styles.chip}
     style={{
@@ -37,7 +24,7 @@ const SkillChipItem = ({ name, icon, color }) => (
       borderColor: color,
     }}
   >
-    <img src={icon} alt={name} className={styles.icon} />
+    <Icon className={styles.icon} color={color} aria-hidden />
     <span className={styles.text} style={{ color }}>
       {name}
     </span>

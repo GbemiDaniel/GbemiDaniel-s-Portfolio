@@ -1,0 +1,110 @@
+/* Floating dev icons that sit between outer and inner glass containers */
+.frameIcons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.icon {
+  position: absolute;
+  font-size: clamp(18px, 2vw, 28px);
+  color: var(--icon-color, rgba(232, 247, 255, 0.8));
+  opacity: 0.6;
+  text-shadow: 0 0 12px var(--icon-shadow, rgba(255, 255, 255, 0.22));
+  filter: drop-shadow(0 8px 16px var(--icon-shadow, rgba(0, 0, 0, 0.25)));
+  mix-blend-mode: screen;
+  animation:
+    bob 9s ease-in-out infinite,
+    luminance 5.5s ease-in-out infinite;
+}
+
+.i1 {
+  top: 10%;
+  left: 6%;
+  transform: translate(-30%, 0);
+  animation-delay: -2s;
+  --icon-color: #6d28d9;
+  --icon-shadow: rgba(109, 40, 217, 0.38);
+}
+.i2 {
+  top: 14%;
+  right: 10%;
+  transform: translate(30%, 0);
+  animation-delay: -3s;
+  --icon-color: #22d3ee;
+  --icon-shadow: rgba(34, 211, 238, 0.38);
+}
+.i3 {
+  bottom: 12%;
+  left: 12%;
+  transform: translate(-25%, 20%);
+  animation-delay: -4s;
+  --icon-color: #10b981;
+  --icon-shadow: rgba(16, 185, 129, 0.32);
+}
+.i4 {
+  bottom: 16%;
+  right: 12%;
+  transform: translate(25%, 20%);
+  animation-delay: -1s;
+  --icon-color: #6b21a8;
+  --icon-shadow: rgba(107, 33, 168, 0.32);
+}
+.i5 {
+  top: 50%;
+  left: 3%;
+  transform: translate(-40%, -50%);
+  animation-delay: -5s;
+  --icon-color: #f59e0b;
+  --icon-shadow: rgba(245, 158, 11, 0.3);
+}
+.i6 {
+  top: 46%;
+  right: 4%;
+  transform: translate(40%, -50%);
+  animation-delay: -6s;
+  --icon-color: #f8fafc;
+  --icon-shadow: rgba(248, 250, 252, 0.24);
+}
+.i7 {
+  bottom: 6%;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  animation-delay: -7s;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  --icon-color: #22d3ee;
+  --icon-shadow: rgba(34, 211, 238, 0.34);
+}
+
+@keyframes bob {
+  0% {
+    transform: translate(var(--tx, 0), var(--ty, 0)) translateY(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(var(--tx, 0), var(--ty, 0)) translateY(-6px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(var(--tx, 0), var(--ty, 0)) translateY(0);
+    opacity: 0.55;
+  }
+}
+
+/* Gentle glow/brightness pulse for the glass-layer icons */
+@keyframes luminance {
+  0% {
+    filter: drop-shadow(0 8px 16px var(--icon-shadow, rgba(0, 0, 0, 0.25)));
+    opacity: 0.55;
+  }
+  50% {
+    filter: drop-shadow(0 10px 22px var(--icon-shadow, rgba(0, 0, 0, 0.35)));
+    opacity: 0.8;
+  }
+  100% {
+    filter: drop-shadow(0 8px 16px var(--icon-shadow, rgba(0, 0, 0, 0.25)));
+    opacity: 0.6;
+  }
+}
